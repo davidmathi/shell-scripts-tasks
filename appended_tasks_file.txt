@@ -1,0 +1,256 @@
+Assignment - 1
+---------------------------------------------------------------
+ 
+echo "Enter a number"
+read number
+
+reminder=$(( $number % 2 ))
+
+if [ $reminder -eq 0 ]
+then
+echo "$number is even number"
+else
+echo "$number is odd number"
+fi
+
+-----------------------------------------------------------------
+ 
+Assignment - 2
+---------------------------------------------------------------
+ 
+for ((i=2;i < 50;i++)) do
+      count=0
+      for (( j = 2; j < $i; j++ ))
+      do
+        if [ `expr $i % $j`  -eq 0 ]
+        then
+        count=`expr $count + 1`
+        fi
+      done
+      if [ `echo $count` -eq 0 ]
+      then
+      echo "$i is a prime number"
+      fi
+done
+-----------------------------------------------------------------
+ 
+Assignment - 3
+---------------------------------------------------------------
+ 
+Hello(){
+
+  if [ $# -lt 5 ]; then
+      echo "less number of inputs"
+      exit 1
+  else
+    for item in "$@"
+    do
+    echo "$item"
+  done | sort
+fi
+}
+
+echo -n "enter something "
+read text1 text2 text3 text4 text5
+Hello $text1 $text2 $text3 $text4 $text5
+-----------------------------------------------------------------
+ 
+Assignment - 4
+---------------------------------------------------------------
+ 
+exec>logfile.txt
+prob4(){
+printf "\n"
+echo "date - $(date)"
+printf "\n"
+echo "logged in users  - $(w)"
+printf "\n"
+echo "uptime - $(uptime)"
+}
+
+while true
+do
+echo "hi"
+prob4
+sleep 6
+done
+-----------------------------------------------------------------
+ 
+Assignment - 5
+---------------------------------------------------------------
+ 
+install_lamp()
+{
+sudo yum update -y
+sudo yum install -y  httpd24 php56 mysql55-server php56-mysqlnd
+sudo service httpd start
+sudo chkconfig httpd on
+}
+
+install_lamp
+-----------------------------------------------------------------
+ 
+Assignment - 6
+---------------------------------------------------------------
+ 
+#!/bin/bash
+for (( i = 1; i < 100; i++ ))
+  do
+    if [[ `expr $i % 3`  -eq 0  &&  `expr $i % 5`  -ne 0 ]]
+    then
+    printf "foo"
+    printf "\n"
+  elif [[ `expr $i % 3`  -eq 0  &&  `expr  $i % 5` -ne 0 ]]
+   then
+     printf "bar"
+     printf "\n"
+  elif [[ `expr $i % 3` -eq 0  &&  `expr $i % 5` -eq 0 ]]
+  then
+  printf "foo bar"
+  printf "\n"
+  else
+    printf "$i"
+    printf "\n"
+  fi
+done
+-----------------------------------------------------------------
+ 
+Assignment - 7
+---------------------------------------------------------------
+ 
+mkdir odd
+mkdir even
+for i in {1..25}; do
+    echo  > $i
+    if [ `expr $i % 2` -eq 0 ]
+    then
+      mv $i even/
+    else
+      mv $i odd/
+    fi
+done
+-----------------------------------------------------------------
+ 
+Assignment - 8
+---------------------------------------------------------------
+ 
+#!/bin/bash
+echo -n "Enter a number to be printed in reverse >"
+read number
+duplicate=$number
+final_value=0
+ while [[ $duplicate -gt 0 ]]; do
+   #statements
+   total_digits=${#duplicate}
+   remainder=$(($duplicate % 10))
+  digitsLess=$(($total_digits - 1))
+ multiplied=$((10 ** $digitsLess))
+ indi_sum=`expr $remainder \* $multiplied`
+ final_value=`expr $final_value + $indi_sum `
+ echo "$final_value"
+ duplicate=$(( $duplicate / 10 ))
+ echo "$duplicate"
+ done
+
+ echo "$final_value"
+-----------------------------------------------------------------
+ 
+Assignment - 9
+---------------------------------------------------------------
+ 
+echo "Enter any sentence u wish"
+read sentence
+echo $sentence > sentence.txt
+
+echo "enter character whish to search"
+read character
+
+grep $character -o sentence.txt | wc -l
+-----------------------------------------------------------------
+ 
+Assignment - 10
+---------------------------------------------------------------
+ 
+
+  echo "Enter name for address"
+  read name
+grep -n $name nameAddress.txt
+-----------------------------------------------------------------
+ 
+Assignment - 11
+---------------------------------------------------------------
+ 
+cd /proc
+highest=0
+for pid in [0-9]*
+do
+  fd_count=$((`ls /proc/$pid/fd/ | wc -l`))
+    if [[ $fd_count -gt highest ]]; then
+       highest=$fd_count
+       high_pid=$pid
+    fi
+done
+echo "PID $high_pid has highest $highest file descriptors"
+-----------------------------------------------------------------
+ 
+Assignment - 12
+---------------------------------------------------------------
+ 
+find . -type f -ls | sort | head -1
+-----------------------------------------------------------------
+ 
+Assignment - 13
+---------------------------------------------------------------
+ 
+echo "hi"
+sed -i -e  's/in/MAD/g' 221baker.txt
+-----------------------------------------------------------------
+ 
+Assignment - 14
+---------------------------------------------------------------
+ 
+echo "enter any numbers to determine central one"
+
+read -a numbers
+
+numberDigits=${#numbers[@]}
+
+sum_high=0
+echo ${numbers[1]}
+for (( i=1; i<$(($numberDigits - 1)) ; i++)) do
+  sum_low=0
+  sum_high=0
+  for (( j = 0; j < $i; j++ )) do
+    #echo " i - $i"
+    sum_low=$(($sum_low + ${numbers[j]}))
+   #echo "sum - $sum_low"
+  done
+  for (( j=$(($i + 1)); j < $(($numberDigits)); j++ )); do
+#echo "j- $j"
+    sum_high=$(($sum_high + ${numbers[j]}))
+   #echo "$sum_high"
+  done
+  if [[ $sum_low -eq $sum_high ]]
+  then
+    echo " Sum on both sides gets equal at $(($i + 1)) th position"
+  fi
+
+done
+-----------------------------------------------------------------
+ 
+Assignment - 15
+---------------------------------------------------------------
+ 
+highest=$((! df  -P | awk '{print $5}' | cut -d '%' -f 1))
+
+if [[ $highest -lt 40 ]]; then
+  #statements
+   echo "System capacity less than 40%" | mail -s "a subject" davidlivingstone.mathi@gmail.com
+fi
+-----------------------------------------------------------------
+ 
+Assignment - 16
+---------------------------------------------------------------
+ 
+-----------------------------------------------------------------
+ 
